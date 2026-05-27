@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لحبيبتي شروق -عيد ميلاد سعيد</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Amiri:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff4d6d;
+            --secondary-color: #ff8fa3;
+            --bg-gradient: linear-gradient(135deg, #1a0b2e 0%, #4a0e4e 50%, #1a0b2e 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-gradient);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background-shapes {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            bottom: -150px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: rise 10s infinite ease-in;
+            opacity: 0.5;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-1000px) rotate(360deg); opacity: 0; }
+        }
+
+        #loginPage {
+            position: relative;
+            z-index: 100;
+            width: 90%;
+            max-width: 400px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        #loginPage h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        #loginPage > p {
+            margin-bottom: 25px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .input-group { margin-bottom: 20px; }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        .btn-login {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            border: none;
+            padding: 15px 40px;
+            color: white;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px #ff416c;
+        }
+
+        .error-msg {
+            color: #ff416c;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .music-indicator {
+            background: rgba(255, 65, 108, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 1px solid var(--secondary-color);
+            display: none;
+        }
+
+        .music-indicator .note {
+            font-size: 1.5rem;
+            animation: bounce 0.5s infinite alternate;
+        }
+
+        .music-indicator .status {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            color: var(--primary-color);
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+
+        #mainPage {
+            display: none;
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 600px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px var(--primary-color);
+            background: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto 20px auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-family: 'Amiri', serif;
+            color: var(--secondary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        h2 {
+            font-family: 'Amiri';
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .date-box {
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            border: 1px solid var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .message-box {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #f0f0f0;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
+
+        .music-player {
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid var(--secondary-color);
+        }
+
+        .music-player h3 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .music-status {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .music-status.playing::before {
+            content: "🔊";
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .heart {
+            position: absolute;
+            color: var(--primary-color);
+            font-size: 20px;
+            top: -20px;
+            animation: fall linear infinite;
+            opacity: 0;
+            z-index: 5;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .neon-text {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+        }
+
+        .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .note-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            animation: bounce 1s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-shapes" id="shapes"></div>
+
+    <div id="loginPage">
+        <div class="lock-icon">🔐</div>
+        <h2>تسجيل دخول</h2>
+        <p>أكتب تاريخ ميلاد حبيبتك شروق</p>
+        
+        <div class="input-group">
+            <label>الباسورد</label>
+            <input type="text" id="password" placeholder="مثال: 14/6/2010">
+        </div>
+        
+        <button class="btn-login" id="loginBtn">
+            دخول ▶️
+        </button>
+        
+        <p class="error-msg" id="errorMsg">❌ كلمة المرور خطأ! حاول مرة أخرى</p>
+        
+        <div class="music-indicator" id="musicIndicator">
+            <div class="note">🎵</div>
+            <div class="status" id="musicStatus">🔊 الموسيقى تشتغل...</div>
+        </div>
+    </div>
+
+    <div id="mainPage">
+        <div class="profile-img"></div>
+
+        <h1 class="neon-text">عيد ميلاد سعيد</h1>
+        <h2>لحبيبتي شروق</h2>
+        
+        <div class="date-box">
+            📅 14 / 6 / 2010
+        </div>
+
+        <div class="message-box">
+            <p>في اليوم الجميل الذي وُلدت فيه،</p>
+            <p>أجمل الكنوز الموجودة في حياتي.</p>
+            <p>كل عام وأنتي <span class="highlight">حبيبتي</span>،</p>
+            <p>و<span class="highlight">عسلي</span> في حياتي،</p>
+            <p>و<span class="highlight">نوري</span> الذي يضيء لي الدروب.</p>
+            <br>
+            <p>أحبك حب لا نهائي.</p>
+        </div>
+
+        <div class="music-player">
+            <div class="note-icon">🎵</div>
+            <h3>أغنيةعيد الميلاد</h3>
+            <div class="music-status playing" id="mainMusicStatus">🎵 الموسيقى تعمل الآن! ❤️</div>
+        </div>
+    </div>
+
+    <!-- === غير اسم الملف هنا，根据 اسم الملف اللي رفعته === -->
+    <audio id="birthdayAudio" preload="auto" loop>
+        <source src="1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        var correctPassword = "14/6/2010";
+        var musicStarted = false;
+        var audio = document.getElementById('birthdayAudio');
+        
+        document.getElementById('loginBtn').onclick = function() {
+            // تشغيل الموسيقى فوراً!
+            if (!musicStarted) {
+                musicStarted = true;
+                audio.volume = 1.0;
+                audio.play().then(function() {
+                    document.getElementById('musicIndicator').style.display = 'block';
+                    document.getElementById('musicStatus').textContent = "🔊 الموسيقى تعمل!";
+                }).catch(function(e) {
+                    console.log("محتاج ملف صوت");
+                    document.getElementById('musicIndicator').style.display = 'block';
+                    document.getElementById('musicStatus').textContent = "⚠️ تحقق من اسم الملف!";
+                });
+            }
+
+            var inputPassword = document.getElementById('password').value.trim();
+            inputPassword = inputPassword.replace(/\s+/g, '');
+            
+            if (inputPassword === correctPassword) {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('mainPage').style.display = 'block';
+                audio.play();
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        };
+
+        function createHeart() {
+            var heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.opacity = Math.random();
+            document.body.appendChild(heart);
+            setTimeout(function() { heart.remove(); }, 5000);
+        }
+
+        setInterval(createHeart, 500);
+
+        var shapesContainer = document.getElementById('shapes');
+        for (var i = 0; i < 15; i++) {
+            var shape = document.createElement('div');
+            shape.className = 'shape';
+            var size = Math.random() * 100 + 50;
+            shape.style.width = size + 'px';
+            shape.style.height = size + 'px';
+            shape.style.left = Math.random() * 100 + '%';
+            shapesContainer.appendChild(shape);
+        }
+    </script>
+
+</body>
+</html>
