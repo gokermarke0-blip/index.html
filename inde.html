@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد اضحي مبارك - بطاقة فاخرة</title>
+    <!-- استدعاء خط عربي جميل من جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Amiri+Quran&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة ألعاب النارية -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* إعدادات الصفحة الرئيسية */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Almarai', sans-serif;
+            background: radial-gradient(circle at center, #1a1a2e, #0f0f1a);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* خلفية مضيئة (النجوم) */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            animation: zoom 100s infinite linear;
+            z-index: -1;
+        }
+
+        /* الحاوية الرئيسية */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #d4af37; /* لون ذهبي */
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            max-width: 500px;
+            width: 90%;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* العنوان الرئيسي بتأثير ذهبي */
+        h1 {
+            font-family: 'Amiri Quran', serif;
+            font-size: 3rem;
+            background: linear-gradient(to bottom, #ffd700, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        /* مدخل الاسم */
+        input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffd700;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Almarai', sans-serif;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        /* الزر فاخر */
+        button {
+            background: linear-gradient(45deg, #b8860b, #ffd700, #b8860b);
+            background-size: 200% auto;
+            color: #000;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.4s;
+            font-family: 'Almarai', sans-serif;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        button:hover {
+            background-position: right center;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+        }
+
+        /* منطقة الاسم الذي سيرسلة */
+        #resultArea {
+            display: none;
+            margin-top: 30px;
+            animation: popIn 0.5s ease-out;
+        }
+
+        .greeting-card {
+            background: linear-gradient(to bottom right, #2c2c2c, #1a1a1a);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #ffd700;
+        }
+
+        .friend-name {
+            color: #ffd700;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes zoom {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 1000px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- النجوم في الخلفية -->
+    <div class="stars"></div>
+
+    <div class="container">
+        <h1>عيد أضحى مبارك</h1>
+        <p>كل عام أنتم بخير </p> <!-- typo متعمد للضحك أو صح玩笑 -->
+        <p>أدخل اسم صديقك  تهنيه بالعيد:</p>
+
+        <div id="inputArea">
+            <input type="text" id="friendName" placeholder="اكتب هنا اسم الصديق..." autocomplete="off">
+            <br>
+            <button onclick="celebrate()">🎉 تهنية الأن 🎉</button>
+        </div>
+
+        <div id="resultArea">
+            <div class="greeting-card">
+                <h2>🎈 العيد مبروك ياخواتي</h2>
+                <div class="friend-name" id="displayName"></div>
+                <p>كل عام واحنا مع بعض 🎉</p>
+                <button onclick="reset()" style="margin-top: 15px; font-size: 1rem; padding: 10px 20px;">تهنية شخص آخر</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function celebrate() {
+            const nameInput = document.getElementById('friendName').value;
+            
+            if (nameInput.trim() === "") {
+                alert("من فضلك اكتب الاسم!");
+                return;
+            }
+
+            // إظهار الاسم
+            document.getElementById('displayName').innerText = nameInput;
+            document.getElementById('inputArea').style.display = 'none';
+            document.getElementById('resultArea').style.display = 'block';
+
+            // إطلاق ألعاب نارية ضخمة!
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+              return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+              var timeLeft = animationEnd - Date.now();
+
+              if (timeLeft <= 0) {
+                return clearInterval(interval);
+              }
+
+              var particleCount = 50 * (timeLeft / duration);
+              
+              // إنشاء النار من اليمين واليسار
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
+        function reset() {
+            document.getElementById('friendName').value = "";
+            document.getElementById('inputArea').style.display = 'block';
+            document.getElementById('resultArea').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
